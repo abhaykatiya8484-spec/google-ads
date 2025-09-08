@@ -1,0 +1,558 @@
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's Google Ads</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Modal specific styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 500px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-transparent text-gray-800 flex flex-col min-h-screen relative">
+    
+    <!-- New Blurred Background Layer -->
+    <div class="fixed inset-0 z-0 bg-gradient-to-br from-blue-500 to-purple-500 opacity-60"></div>
+    <div class="fixed inset-0 z-0 backdrop-blur-xl"></div>
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow z-10 relative">
+
+        <!-- Header -->
+        <header class="text-center py-6">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
+                See Today's Google Ad Types
+            </h1>
+            <p class="mt-2 text-lg text-gray-600 max-w-2xl mx-auto">
+                Discover a curated selection of Google Ad types you can use for your business.
+            </p>
+        </header>
+
+        <!-- Ads Container -->
+        <main class="py-8">
+            <div id="adsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Ad cards will be dynamically inserted here by JavaScript -->
+            </div>
+            <div class="flex justify-center mt-12">
+                <button onclick="displayRandomAds()" class="px-8 py-3 bg-indigo-600 text-white font-medium rounded-full text-lg shadow-lg hover:bg-indigo-700 transition-colors duration-300">
+                    Show New Ads
+                </button>
+            </div>
+        </main>
+
+        <!-- New Section for Earning Money - Now a general guide to monetization -->
+        <section class="py-12 mt-12">
+            <div class="bg-white/95 p-8 rounded-2xl shadow-lg border border-gray-200 text-center max-w-4xl mx-auto">
+                <div class="flex flex-col items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-emerald-600" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                    </svg>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mt-4">
+                        How to Monetize Your Website
+                    </h2>
+                </div>
+                <p class="mt-4 text-gray-600 text-lg">
+                    There are many ways to turn your website traffic into a source of income. Here are some of the most popular and effective methods.
+                </p>
+            </div>
+        </section>
+
+        <!-- Monetization Methods Grid -->
+        <section class="py-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- AdSense Section -->
+                <div class="bg-white/95 p-8 rounded-2xl shadow-lg border border-gray-200">
+                    <div class="flex items-center">
+                        <div class="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm4-8H8c-.55 0-1-.45-1-1s.45-1 1-1h8c.55 0 1 .45 1 1s-.45 1-1 1z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 ml-4">Google AdSense</h3>
+                    </div>
+                    <p class="mt-4 text-gray-600">
+                        The easiest way to get started. AdSense places relevant ads on your site. You earn money when visitors click on the ads or when they see them a certain number of times. Google handles all the billing and payments.
+                    </p>
+                    <div class="mt-4">
+                        <a href="https://www.google.com/adsense/start/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 font-medium">
+                            Learn more →
+                        </a>
+                    </div>
+                </div>
+                <!-- Affiliate Marketing Section -->
+                <div class="bg-white/95 p-8 rounded-2xl shadow-lg border border-gray-200">
+                    <div class="flex items-center">
+                        <div class="flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-600" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-6h-2v6zm0-8h2V7h-2v2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 ml-4">Affiliate Marketing</h3>
+                    </div>
+                    <p class="mt-4 text-gray-600">
+                        You earn a commission by promoting other people's products or services. You place special links on your site, and when a visitor clicks a link and makes a purchase, you get a percentage of the sale.
+                    </p>
+                    <div class="mt-4">
+                        <a href="#" class="text-purple-600 hover:text-purple-800 font-medium">
+                            Learn more →
+                        </a>
+                    </div>
+                </div>
+                <!-- Selling Products/Services Section -->
+                <div class="bg-white/95 p-8 rounded-2xl shadow-lg border border-gray-200">
+                    <div class="flex items-center">
+                        <div class="flex items-center justify-center w-16 h-16 bg-yellow-100 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-600" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.43 10.97c-.36-.36-.94-.36-1.3 0L12 15.1l-4.13-4.13c-.36-.36-.94-.36-1.3 0s-.36.94 0 1.3l4.77 4.77c.36.36.94.36 1.3 0l4.77-4.77c.36-.36.36-.94 0-1.3zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 ml-4">Selling Your Own Products</h3>
+                    </div>
+                    <p class="mt-4 text-gray-600">
+                        This is a great option if you have a unique product or service to offer. It could be physical goods, digital products like e-books, or a subscription to exclusive content.
+                    </p>
+                    <div class="mt-4">
+                        <a href="#" class="text-yellow-600 hover:text-yellow-800 font-medium">
+                            Learn more →
+                        </a>
+                    </div>
+                </div>
+                <!-- Sponsored Content Section -->
+                <div class="bg-white/95 p-8 rounded-2xl shadow-lg border border-gray-200">
+                    <div class="flex items-center">
+                        <div class="flex items-center justify-center w-16 h-16 bg-green-100 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm-1-11v6c0 .55.45 1 1 1s1-.45 1-1v-6c0-.55-.45-1-1-1s-1 .45-1 1zm0 8h2v2h-2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 ml-4">Sponsored Content</h3>
+                    </div>
+                    <p class="mt-4 text-gray-600">
+                        As your website grows, companies may pay you to create content that features their products or services. This can include sponsored blog posts, reviews, or social media mentions.
+                    </p>
+                    <div class="mt-4">
+                        <a href="#" class="text-green-600 hover:text-green-800 font-medium">
+                            Learn more →
+                        </a>
+                    </div>
+                </div>
+                <!-- Running Google Ads Section -->
+                <div class="bg-white/95 p-8 rounded-2xl shadow-lg border border-gray-200">
+                    <div class="flex items-center">
+                        <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.41 0 8-3.59 8-8s-3.59-8-8-8-8 3.59-8 8 3.59 8 8 8zm1-11v6h-2v-6h2z" />
+                                <path d="M12 11V6" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 ml-4">Running Google Ads (Advertiser)</h3>
+                    </div>
+                    <p class="mt-4 text-gray-600">
+                        While Google AdSense helps you earn money, you can also spend money on ads to bring traffic to your website. This is a great way to grow your audience and make your other monetization efforts more effective.
+                    </p>
+                    <div class="mt-4">
+                        <a href="https://ads.google.com" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-800 font-medium">
+                            Start advertising →
+                        </a>
+                    </div>
+                </div>
+                <!-- Social Media Monetization Section -->
+                <div class="bg-white/95 p-8 rounded-2xl shadow-lg border border-gray-200">
+                    <div class="flex items-center">
+                        <div class="flex items-center justify-center w-16 h-16 bg-pink-100 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-pink-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path d="M21 21L15 15m-4 0c-.55 0-1-.45-1-1v-2c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v2c0 .55-.45 1-1 1h-2zM12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+                                <path d="M15 15m-4 0a4 4 0 108 0 4 4 0 00-8 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 ml-4">Monetizing Social Media</h3>
+                    </div>
+                    <p class="mt-4 text-gray-600">
+                        You can earn money from social platforms like Instagram, YouTube, and TikTok through **sponsored posts**, **affiliate links**, or by **selling your own products** directly to your followers.
+                    </p>
+                    <div class="mt-4">
+                        <a href="#" class="text-pink-600 hover:text-pink-800 font-medium">
+                            Learn more →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section: Getting Started with Social Media Ads -->
+        <section class="py-12">
+            <div class="bg-white/95 p-8 rounded-2xl shadow-lg border border-gray-200 text-center max-w-4xl mx-auto">
+                <div class="flex flex-col items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M4 18h12a2 2 0 002-2V8a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mt-4">
+                        How to Run Social Media Ads
+                    </h2>
+                </div>
+                <p class="mt-4 text-gray-600 text-lg">
+                    Running ads on social media is a key way to grow your audience and drive traffic to your website. Each platform has its own advertising manager.
+                </p>
+                <div class="mt-8 flex flex-col items-center space-y-4">
+                    <a href="https://ads.youtube.com/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3 bg-red-600 text-white font-medium rounded-full text-lg shadow-lg hover:bg-red-700 transition-colors duration-300">
+                        Advertise on YouTube →
+                    </a>
+                    <a href="https://facebook.com/business/ads" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3 bg-blue-600 text-white font-medium rounded-full text-lg shadow-lg hover:bg-blue-700 transition-colors duration-300">
+                        Advertise on Facebook & Instagram →
+                    </a>
+                    <a href="https://ads.tiktok.com/" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-3 bg-black text-white font-medium rounded-full text-lg shadow-lg hover:bg-gray-800 transition-colors duration-300">
+                        Advertise on TikTok →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Section: Uploading Your Video for an Ad -->
+        <section class="py-12">
+            <div class="bg-white/95 p-8 rounded-2xl shadow-lg border border-gray-200 max-w-4xl mx-auto">
+                <div class="flex flex-col items-center text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-cyan-600" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v4h4v12H6z" />
+                    </svg>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mt-4">
+                        How to Upload Your Video for an Ad
+                    </h2>
+                </div>
+                <p class="mt-4 text-gray-600 text-lg">
+                    While each platform is different, the basic process to turn your video into an ad is very similar:
+                </p>
+                <ol class="list-decimal list-inside mt-4 text-gray-600 text-lg space-y-3">
+                    <li>
+                        <strong class="font-semibold text-gray-900">Create an Ad Account:</strong> First, you'll need to set up a business or ad account for the platform you want to use.
+                    </li>
+                    <li>
+                        <strong class="font-semibold text-gray-900">Start a New Campaign:</strong> Choose your campaign goal. This could be to get more views, drive traffic to your website, or increase sales.
+                    </li>
+                    <li>
+                        <strong class="font-semibold text-gray-900">Define Your Audience:</strong> Tell the platform who you want to reach. You can target people based on their age, location, interests, and more.
+                    </li>
+                    <li>
+                        <strong class="font-semibold text-gray-900">Upload Your Video:</strong> Select the video you want to use for your ad from your computer or phone.
+                    </li>
+                    <li>
+                        <strong class="font-semibold text-gray-900">Set a Budget and Schedule:</strong> Decide how much you want to spend and for how long you want your ad to run.
+                    </li>
+                    <li>
+                        <strong class="font-semibold text-gray-900">Launch Your Ad:</strong> Once everything is set, you can review and launch your ad campaign.
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- New Interactive Sections -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto mt-12">
+            <!-- Ad Revenue Estimator -->
+            <div class="bg-white/95 p-8 rounded-2xl shadow-lg border border-gray-200 flex flex-col">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">Ad Revenue Estimator</h2>
+                <p class="text-gray-600 mb-6 text-center">Estimate your potential daily ad revenue from a website.</p>
+                <form id="revenueForm" class="space-y-4">
+                    <div>
+                        <label for="dailyPageViews" class="block text-sm font-medium text-gray-700">Daily Page Views</label>
+                        <input type="number" id="dailyPageViews" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" placeholder="e.g., 1000" min="0" required>
+                    </div>
+                    <div>
+                        <label for="cpc" class="block text-sm font-medium text-gray-700">Average CPC (Cost Per Click) in $</label>
+                        <input type="number" step="0.01" id="cpc" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" placeholder="e.g., 0.50" min="0" required>
+                    </div>
+                    <div>
+                        <label for="ctr" class="block text-sm font-medium text-gray-700">CTR (Click-Through Rate) in %</label>
+                        <input type="number" id="ctr" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" placeholder="e.g., 1.5" min="0" max="100" required>
+                    </div>
+                    <button type="submit" class="w-full px-4 py-2 bg-indigo-600 text-white font-medium rounded-full shadow-lg hover:bg-indigo-700 transition-colors">
+                        Calculate
+                    </button>
+                </form>
+                <div id="revenueResult" class="mt-6 text-center text-lg font-semibold text-gray-900 hidden">
+                    <!-- Result will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Marketing Quiz -->
+            <div class="bg-white/95 p-8 rounded-2xl shadow-lg border border-gray-200 flex flex-col">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">Marketing Quiz</h2>
+                <p class="text-gray-600 mb-6 text-center">Test your knowledge on ad types and monetization!</p>
+                <div id="quizContainer">
+                    <div class="mb-4">
+                        <p class="font-medium text-gray-800">1. What type of ad is best for capturing a user's intent on Google Search?</p>
+                        <ul class="mt-2 space-y-2 text-gray-600">
+                            <li><input type="radio" name="q1" value="a"> Display Ads</li>
+                            <li><input type="radio" name="q1" value="b"> Shopping Ads</li>
+                            <li><input type="radio" name="q1" value="c"> Search Ads</li>
+                        </ul>
+                    </div>
+                    <div class="mb-4">
+                        <p class="font-medium text-gray-800">2. Which monetization method pays you a commission for promoting other people's products?</p>
+                        <ul class="mt-2 space-y-2 text-gray-600">
+                            <li><input type="radio" name="q2" value="a"> Google AdSense</li>
+                            <li><input type="radio" name="q2" value="b"> Affiliate Marketing</li>
+                            <li><input type="radio" name="q2" value="c"> Sponsored Content</li>
+                        </ul>
+                    </div>
+                </div>
+                <button onclick="checkQuiz()" class="w-full px-4 py-2 bg-indigo-600 text-white font-medium rounded-full shadow-lg hover:bg-indigo-700 transition-colors">
+                    Submit Answers
+                </button>
+                <div id="quizResult" class="mt-6 text-center text-lg font-semibold hidden">
+                    <!-- Quiz result will be displayed here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Us Section -->
+        <section class="py-12">
+            <div class="bg-white/95 p-8 rounded-2xl shadow-lg border border-gray-200 max-w-4xl mx-auto">
+                <div class="flex flex-col items-center text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm0-4h-2V7h2v8z" />
+                    </svg>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mt-4">
+                        Contact Us
+                    </h2>
+                </div>
+                <p class="mt-4 text-gray-600 text-lg text-center">
+                    Have questions or want to learn more? Fill out the form below.
+                </p>
+                <form id="contactForm" class="mt-6 space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Your Email</label>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700">Your Message</label>
+                        <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full px-4 py-2 bg-indigo-600 text-white font-medium rounded-full shadow-lg hover:bg-indigo-700 transition-colors">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-indigo-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 transform scale-0 hover:scale-105" onclick="scrollToTop()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <!-- Modal for contact form message -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content text-center">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Message Sent!</h3>
+            <p class="text-gray-600 mb-6">Thank you for your message. We'll be in touch soon.</p>
+            <button onclick="closeModal()" class="px-6 py-2 bg-indigo-600 text-white font-medium rounded-full shadow hover:bg-indigo-700 transition-colors">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-8 text-center text-sm text-gray-500 mt-auto">
+        <p>&copy; 2023 Google Ads Showcase. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Ad data and functions remain the same
+        const adTypes = [
+            {
+                name: "Search Ads",
+                description: "Text-based ads that appear on Google Search results pages, at the top or bottom of the page. They are a powerful way to capture user intent.",
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                       </svg>`
+            },
+            {
+                name: "Display Ads",
+                description: "Visually-rich ads that appear on millions of websites and apps across the Google Display Network. Great for brand awareness.",
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                       </svg>`
+            },
+            {
+                name: "Video Ads",
+                description: "Short, engaging video ads that run before, during, or after content on YouTube and other video partners. They are an effective way to tell your brand's story.",
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M4 18h12a2 2 0 002-2V8a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                       </svg>`
+            },
+            {
+                name: "Shopping Ads",
+                description: "Product-based ads that show a product image, price, and store name directly in Google Search results. Ideal for e-commerce businesses.",
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                       </svg>`
+            },
+            {
+                name: "App Promotion Ads",
+                description: "Ads designed to drive app downloads and engagement across Google Search, YouTube, Google Play, and other platforms.",
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75h-7.5M12 11.25H4.5m15 7.5a2.25 2.25 0 01-2.25 2.25h-9a2.25 2.25 0 01-2.25-2.25v-9a2.25 2.25 0 012.25-2.25h9a2.25 2.25 0 012.25 2.25v9z" />
+                       </svg>`
+            },
+            {
+                name: "Local Service Ads",
+                description: "Ads that help local businesses connect with customers in their area. They appear prominently on Google and give customers a quick way to call or message.",
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                       </svg>`
+            }
+        ];
+
+        function getRandomAds(array, num) {
+            const shuffled = [...array].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, num);
+        }
+
+        function createAdCard(ad) {
+            return `
+                <div class="bg-white/95 p-8 rounded-2xl shadow-lg border border-gray-200 flex flex-col items-center text-center">
+                    <div class="flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-full mb-4">
+                        ${ad.icon}
+                    </div>
+                    <h4 class="text-xl font-semibold text-gray-900 mt-2">${ad.name}</h4>
+                    <p class="mt-2 text-gray-600">${ad.description}</p>
+                </div>
+            `;
+        }
+
+        function displayRandomAds() {
+            const adsContainer = document.getElementById('adsContainer');
+            adsContainer.innerHTML = ''; // Clear previous ads
+            const randomAds = getRandomAds(adTypes, 3); // Display 3 random ads
+            randomAds.forEach(ad => {
+                adsContainer.innerHTML += createAdCard(ad);
+            });
+        }
+
+        // Ad Revenue Estimator Logic
+        document.getElementById('revenueForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const dailyPageViews = parseFloat(document.getElementById('dailyPageViews').value);
+            const cpc = parseFloat(document.getElementById('cpc').value);
+            const ctr = parseFloat(document.getElementById('ctr').value);
+            const revenueResult = document.getElementById('revenueResult');
+
+            if (isNaN(dailyPageViews) || isNaN(cpc) || isNaN(ctr) || dailyPageViews < 0 || cpc < 0 || ctr < 0) {
+                revenueResult.textContent = "Please enter valid numbers.";
+                revenueResult.classList.remove('text-gray-900');
+                revenueResult.classList.add('text-red-500');
+            } else {
+                const clicks = dailyPageViews * (ctr / 100);
+                const estimatedRevenue = clicks * cpc;
+                revenueResult.textContent = `Estimated Daily Revenue: $${estimatedRevenue.toFixed(2)}`;
+                revenueResult.classList.remove('text-red-500');
+                revenueResult.classList.add('text-gray-900');
+            }
+            revenueResult.classList.remove('hidden');
+        });
+
+        // Marketing Quiz Logic
+        function checkQuiz() {
+            const quizResult = document.getElementById('quizResult');
+            let correctAnswers = 0;
+            const q1Answer = document.querySelector('input[name="q1"]:checked');
+            const q2Answer = document.querySelector('input[name="q2"]:checked');
+
+            if (q1Answer) {
+                if (q1Answer.value === 'c') {
+                    correctAnswers++;
+                }
+            }
+            if (q2Answer) {
+                if (q2Answer.value === 'b') {
+                    correctAnswers++;
+                }
+            }
+
+            quizResult.textContent = `You got ${correctAnswers} out of 2 correct.`;
+            quizResult.classList.remove('hidden');
+        }
+
+        // Contact Form Modal Logic
+        const contactModal = document.getElementById('contactModal');
+
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            contactModal.style.display = 'flex';
+        });
+
+        function closeModal() {
+            contactModal.style.display = 'none';
+        }
+
+        // Back to Top button logic
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('scale-0');
+                backToTopButton.classList.add('scale-100');
+            } else {
+                backToTopButton.classList.remove('scale-100');
+                backToTopButton.classList.add('scale-0');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Display ads on initial page load
+        window.onload = displayRandomAds;
+    </script>
+</body>
+</html>
